@@ -3,8 +3,10 @@ import IntroScreen from './components/IntroScreen';
 import HipaaScreen from './components/HipaaScreen';
 import DisclaimerScreen from './components/DisclaimerScreen';
 import StepScreen from './components/StepScreen';
+import SectionIntroScreen from './components/SectionIntroScreen';
 import CompletionScreen from './components/CompletionScreen';
 import { buildSteps } from './data/steps';
+import { SECTIONS } from './data/sections';
 import type { UserProfile } from './types';
 
 type Phase = 'intro' | 'hipaa' | 'disclaimer' | 'steps' | 'complete';
@@ -16,6 +18,7 @@ interface PersistedState {
   profile: UserProfile | null;
   currentIndex: number;
   completedIds: string[];
+  seenSections: string[];
 }
 
 function load(): PersistedState | null {
@@ -35,6 +38,9 @@ function App() {
   const [completedIds, setCompletedIds] = useState<Set<string>>(
     new Set(saved?.completedIds ?? [])
   );
+  const [seenSections, setSeenSections] = useState<Set<string>>(
+    new Set(saved?.seenSections ?? [])
+  );
 
   useEffect(() => {
     const data: PersistedState = {
@@ -42,9 +48,10 @@ function App() {
       profile,
       currentIndex,
       completedIds: Array.from(completedIds),
+      seenSections: Array.from(seenSections),
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }, [phase, profile, currentIndex, completedIds]);
+  }, [phase, profile, currentIndex, completedIds, seenSections]);
 
   if (phase === 'intro' || !profile) {
     return (
@@ -73,6 +80,19 @@ function App() {
 
   const step = steps[currentIndex];
   const isComplete = completedIds.has(step.id);
+  const sectionIndex = SECTIONS.findIndex((s) => s.stepIds.includes(step.id));
+  const section = SECTIONS[sectionIndex];
+
+  if (!seenSections.has(section.id)) {
+    return (
+      <SectionIntroScreen
+        section={section}
+        sectionIndex={sectionIndex}
+        totalSections={SECTIONS.length}
+        onContinue={() => setSeenSections((prev) => new Set(prev).add(section.id))}
+      />
+    );
+  }
 
   return (
     <StepScreen

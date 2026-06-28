@@ -3,6 +3,7 @@ import Card from './Card';
 import ProgressBar from './ProgressBar';
 import RevenuePlanner from './RevenuePlanner';
 import BreakEvenCalculator from './BreakEvenCalculator';
+import { SECTIONS } from '../data/sections';
 import type { WizardStep } from '../types';
 
 interface Props {
@@ -32,41 +33,61 @@ export default function StepScreen({
   completedIds,
   onJump,
 }: Props) {
+  const sectionIndex = SECTIONS.findIndex((s) => s.stepIds.includes(step.id));
+  const section = SECTIONS[sectionIndex];
+  const sectionStepIds = new Set(section.stepIds);
+  const sectionStepsDone = steps.filter((s) => sectionStepIds.has(s.id) && completedIds.has(s.id)).length;
+
   return (
     <Shell>
-      <ProgressBar current={index + 1} total={total} label={`Step ${index + 1} of ${total}`} />
+      <ProgressBar
+        sectionIndex={sectionIndex}
+        totalSections={SECTIONS.length}
+        sectionTitle={section.title}
+        sectionStepsDone={sectionStepsDone}
+        sectionStepsTotal={section.stepIds.length}
+        overallCurrent={completedIds.size}
+        overallTotal={total}
+      />
       <div className="flex-1 flex flex-col lg:flex-row gap-6 max-w-5xl mx-auto w-full px-6 py-8">
         <aside className="hidden lg:block w-56 shrink-0">
-          <p className="text-xs font-semibold text-[#8a8a76] uppercase tracking-wide mb-3">
-            Your steps
-          </p>
-          <ol className="space-y-1">
-            {steps.map((s, i) => {
-              const done = completedIds.has(s.id);
-              const active = i === index;
-              return (
-                <li key={s.id + i}>
-                  <button
-                    onClick={() => onJump(i)}
-                    className={`w-full text-left text-sm px-3 py-2 rounded-lg flex items-center gap-2 transition ${
-                      active
-                        ? 'bg-[#e6efe0] text-[#2f3b2f] font-medium'
-                        : 'text-[#5c6b52] hover:bg-[#f3f7ee]'
-                    }`}
-                  >
-                    <span
-                      className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0 ${
-                        done ? 'bg-[#6f9c63] text-white' : 'bg-[#e7e2d3] text-[#8a8a76]'
-                      }`}
-                    >
-                      {done ? '✓' : i + 1}
-                    </span>
-                    <span className="truncate">{s.title}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
+          {SECTIONS.map((sec) => (
+            <div key={sec.id} className="mb-5">
+              <p className="text-xs font-semibold text-[#8a8a76] uppercase tracking-wide mb-2">
+                {sec.title}
+              </p>
+              <ol className="space-y-1">
+                {sec.stepIds.map((id) => {
+                  const i = steps.findIndex((s) => s.id === id);
+                  const s = steps[i];
+                  if (!s) return null;
+                  const done = completedIds.has(s.id);
+                  const active = i === index;
+                  return (
+                    <li key={s.id}>
+                      <button
+                        onClick={() => onJump(i)}
+                        className={`w-full text-left text-sm px-3 py-2 rounded-lg flex items-center gap-2 transition ${
+                          active
+                            ? 'bg-[#e6efe0] text-[#2f3b2f] font-medium'
+                            : 'text-[#5c6b52] hover:bg-[#f3f7ee]'
+                        }`}
+                      >
+                        <span
+                          className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0 ${
+                            done ? 'bg-[#6f9c63] text-white' : 'bg-[#e7e2d3] text-[#8a8a76]'
+                          }`}
+                        >
+                          {done ? '✓' : i + 1}
+                        </span>
+                        <span className="truncate">{s.title}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          ))}
         </aside>
 
         <div className="flex-1">
