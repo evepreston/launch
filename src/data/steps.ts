@@ -106,7 +106,7 @@ export function buildSteps(profile: UserProfile): WizardStep[] {
         'Whatever you choose, make sure to get a bank letter confirming you opened the account, with your LLC name and EIN on it. Some insurers require this during credentialing for direct deposit setup.',
       ],
       links: [
-        { label: 'Found for Therapists', url: 'https://found.com/therapists' },
+        { label: 'Found', url: 'https://found.com/therapists' },
         { label: 'Heard', url: 'https://www.joinheard.com' },
       ],
     },
