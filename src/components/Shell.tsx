@@ -9,7 +9,7 @@ export default function Shell({ children }: { children: ReactNode }) {
             P
           </div>
           <span className="font-semibold text-[#2f3b2f] text-lg tracking-tight">
-            Private practice launch kit
+            private practice launch kit
           </span>
         </div>
       </header>
