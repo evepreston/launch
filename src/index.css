@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  font-family: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #faf7f0;
+  color: #2f3b2f;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: #c9e0bf;
+}
