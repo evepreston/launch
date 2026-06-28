@@ -7,7 +7,6 @@ export default function CompletionScreen({ steps }: { steps: WizardStep[] }) {
     <Shell>
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-2xl w-full text-center">
-          <div className="text-5xl mb-4">🎉</div>
           <h1 className="text-3xl font-semibold text-[#2f3b2f] mb-3">
             You've built the foundation of your practice
           </h1>

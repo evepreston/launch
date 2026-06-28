@@ -6,7 +6,6 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
     <Shell>
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-xl w-full text-center">
-          <div className="text-4xl mb-4">🎉</div>
           <h1 className="text-2xl sm:text-3xl font-semibold text-[#2f3b2f] mb-4">
             Getting licensed was the hard part.
           </h1>

@@ -16,7 +16,6 @@ export default function HipaaScreen({ onContinue }: { onContinue: () => void }) 
     <Shell>
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-2xl w-full">
-          <div className="text-3xl mb-3">🔒</div>
           <h1 className="text-2xl sm:text-3xl font-semibold text-[#2f3b2f] mb-4">
             A quick word on "HIPAA compliant"
           </h1>

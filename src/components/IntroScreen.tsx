@@ -19,7 +19,6 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
       <Shell>
         <div className="flex-1 flex items-center justify-center px-6 py-16">
           <Card className="max-w-lg text-center">
-            <div className="text-4xl mb-4">🌱</div>
             <h1 className="text-2xl font-semibold text-[#2f3b2f] mb-3">
               We'll be here when you're ready
             </h1>

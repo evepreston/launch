@@ -6,7 +6,6 @@ export default function DisclaimerScreen({ onContinue }: { onContinue: () => voi
     <Shell>
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-xl w-full text-center">
-          <div className="text-3xl mb-3">🤝</div>
           <h1 className="text-2xl font-semibold text-[#2f3b2f] mb-4">
             A note on our recommendations
           </h1>

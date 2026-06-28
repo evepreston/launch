@@ -10,7 +10,7 @@ import { buildSteps } from './data/steps';
 import { SECTIONS } from './data/sections';
 import type { UserProfile } from './types';
 
-type Phase = 'intro' | 'congrats' | 'hipaa' | 'disclaimer' | 'steps' | 'complete';
+type Phase = 'welcome' | 'intro' | 'hipaa' | 'disclaimer' | 'steps' | 'complete';
 
 const STORAGE_KEY = 'launchkit-wizard-state';
 
@@ -33,7 +33,7 @@ function load(): PersistedState | null {
 
 function App() {
   const saved = load();
-  const [phase, setPhase] = useState<Phase>(saved?.phase ?? 'intro');
+  const [phase, setPhase] = useState<Phase>(saved?.phase ?? 'welcome');
   const [profile, setProfile] = useState<UserProfile | null>(saved?.profile ?? null);
   const [currentIndex, setCurrentIndex] = useState(saved?.currentIndex ?? 0);
   const [completedIds, setCompletedIds] = useState<Set<string>>(
@@ -54,19 +54,19 @@ function App() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }, [phase, profile, currentIndex, completedIds, seenSections]);
 
+  if (phase === 'welcome') {
+    return <CongratsScreen onContinue={() => setPhase('intro')} />;
+  }
+
   if (phase === 'intro' || !profile) {
     return (
       <IntroScreen
         onComplete={(p) => {
           setProfile(p);
-          setPhase('congrats');
+          setPhase('hipaa');
         }}
       />
     );
-  }
-
-  if (phase === 'congrats') {
-    return <CongratsScreen onContinue={() => setPhase('hipaa')} />;
   }
 
   if (phase === 'hipaa') {
