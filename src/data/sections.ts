@@ -7,7 +7,7 @@ export interface SectionMeta {
 export const SECTIONS: SectionMeta[] = [
   {
     id: 'communications',
-    title: "Let's Get You Set Up",
+    title: "Let's Get Started",
     stepIds: ['mailing-address', 'professional-email', 'phone-fax'],
   },
   {
