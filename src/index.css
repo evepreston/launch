@@ -24,6 +24,12 @@ body {
   cursor: url('/cursor-hand.svg') 5 3, auto;
 }
 
+a,
+button,
+[role='button'] {
+  cursor: url('/cursor-hand.svg') 5 3, auto;
+}
+
 .screen-fade {
   animation: screenFade 200ms ease-in-out;
 }
