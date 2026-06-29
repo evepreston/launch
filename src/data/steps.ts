@@ -15,7 +15,7 @@ export function buildSteps(profile: UserProfile): WizardStep[] {
         "You need a real street address for your practice — not a PO box, and only your home address if you're comfortable with it being publicly listed.",
         'The easiest option is a UPS virtual mailbox: they give you a real street address and manage your mail for you.',
       ],
-      links: [{ label: 'UPS Mailboxes', url: 'https://www.ups.com/mailboxes' }],
+      links: [{ label: 'UPS Mailboxes', url: 'https://www.theupsstore.com/mailboxes/business-mailboxes' }],
     },
     'professional-email': {
       id: 'professional-email',
