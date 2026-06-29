@@ -23,9 +23,9 @@ export function buildSteps(profile: UserProfile): WizardStep[] {
       title: 'Set up a professional email',
       summary: 'Get name@yourpractice.com instead of a Gmail address.',
       body: [
-        'Set up Google Workspace so your email is name@yourpractice.com instead of a regular Gmail address.',
+        'Set up Google Workspace so your email is name@yourpractice.com instead of a regular Gmail address. Google Workspace is a paid monthly subscription (not a one-time fee).',
         'This looks more professional, and it also lets you sign a Business Associate Addendum — which makes your email HIPAA compliant.',
-        'You can purchase your domain name at the same time.',
+        "You can purchase your domain name at the same time — but you only need to do this if you're planning on building a website. If you're not building one yet, you can skip the domain purchase for now.",
       ],
       links: [{ label: 'Google Workspace', url: 'https://workspace.google.com' }],
     },
