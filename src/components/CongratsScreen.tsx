@@ -39,7 +39,7 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
             You've got this.
           </p>
           <p className="text-sm lowercase text-[#6b6b62] mb-10 max-w-md">
-            built by a therapist who's been through it — so you don't have to figure it out alone.
+            built by therapists.
           </p>
           <button
             onClick={onContinue}
