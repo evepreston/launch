@@ -3,7 +3,7 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
     <div className="min-h-screen flex flex-col bg-[#f5f2ea]">
       <header className="w-full px-6 sm:px-12 py-5 border-b border-[#e6ddc9]">
         <div className="flex items-center justify-between">
-          <span className="font-display font-bold text-[13px] lowercase whitespace-nowrap">
+          <span className="font-display font-bold text-[18px] lowercase whitespace-nowrap">
             <span className="text-[#7d9b76]">private practice</span>
             <span className="text-[#2c2c2a]"> launch kit</span>
             <span className="text-[#c4714f]">.</span>
@@ -59,16 +59,13 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
 
           <button
             onClick={onContinue}
-            className="group inline-flex items-center gap-2 font-medium lowercase text-[26px] text-[#c4714f] hover:text-[#a8583a] transition mb-4 ml-1"
+            className="inline-flex items-center gap-2 font-medium lowercase text-[26px] text-[#7d9b76] hover:text-[#6b8a64] transition mb-4 ml-1"
           >
-            <span className="border-b border-transparent group-hover:border-[#a8583a] transition">
-              let's get you set up
-            </span>
-            <span className="transition group-hover:translate-x-1">→</span>
+            let's get you set up →
           </button>
 
-          <p className="text-[13px] lowercase text-[#8a8a80] ml-1 mt-20">
-            *built by a therapist and her business friend
+          <p className="text-[13px] lowercase text-[#8a8a80] ml-1 mt-28">
+            *built by a therapist and her business friend.
           </p>
         </div>
       </main>
