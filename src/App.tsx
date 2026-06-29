@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import IntroScreen from './components/IntroScreen';
 import CongratsScreen from './components/CongratsScreen';
-import HipaaScreen from './components/HipaaScreen';
 import DisclaimerScreen from './components/DisclaimerScreen';
 import StepScreen from './components/StepScreen';
 import CompletionScreen from './components/CompletionScreen';
 import { buildSteps } from './data/steps';
 import type { UserProfile } from './types';
 
-type Phase = 'welcome' | 'intro' | 'hipaa' | 'disclaimer' | 'steps' | 'complete';
+type Phase = 'welcome' | 'intro' | 'disclaimer' | 'steps' | 'complete';
 
 const STORAGE_KEY = 'launchkit-wizard-state';
 
@@ -56,14 +55,10 @@ function App() {
       <IntroScreen
         onComplete={(p) => {
           setProfile(p);
-          setPhase('hipaa');
+          setPhase('disclaimer');
         }}
       />
     );
-  }
-
-  if (phase === 'hipaa') {
-    return <HipaaScreen onContinue={() => setPhase('disclaimer')} />;
   }
 
   if (phase === 'disclaimer') {

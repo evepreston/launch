@@ -48,7 +48,7 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
     <Shell>
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-xl w-full">
-          <OnboardingProgress step={2} total={4} />
+          <OnboardingProgress step={2} total={3} />
           <h1 className="text-3xl sm:text-4xl font-bold text-[#2f3b2f] mb-2 tracking-tight leading-tight text-center">
             Let's make sure this is the right fit
           </h1>
