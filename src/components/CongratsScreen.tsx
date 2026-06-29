@@ -58,7 +58,7 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
       <div className="bg-[#f0ead8] px-6 py-20">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-[#3a3a36] leading-relaxed mb-4">
-            this was built by a therapist who's been through it.
+            built by therapists.
           </p>
           <a
             href="#about"
