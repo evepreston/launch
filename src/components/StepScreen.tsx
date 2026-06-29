@@ -4,6 +4,7 @@ import ProgressBar from './ProgressBar';
 import RevenuePlanner from './RevenuePlanner';
 import BreakEvenCalculator from './BreakEvenCalculator';
 import { SECTIONS } from '../data/sections';
+import { withGlossary } from '../utils/withGlossary';
 import type { WizardStep } from '../types';
 
 interface Props {
@@ -98,11 +99,11 @@ export default function StepScreen({
             <h1 className="text-2xl sm:text-3xl font-semibold text-[#2f3b2f] mb-2">
               {step.title}
             </h1>
-            <p className="text-[#6f9c63] font-medium mb-6">{step.summary}</p>
+            <p className="text-[#6f9c63] font-medium mb-6">{withGlossary(step.summary)}</p>
 
             <div className="space-y-4 text-[#4a5743] leading-relaxed">
               {step.body.map((p, i) => (
-                <p key={i}>{p}</p>
+                <p key={i}>{withGlossary(p)}</p>
               ))}
             </div>
 
