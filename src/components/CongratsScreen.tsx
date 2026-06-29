@@ -59,9 +59,9 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
 
           <button
             onClick={onContinue}
-            className="group inline-flex items-center gap-2 font-medium lowercase text-[22px] text-[#7d9b76] hover:text-[#c4714f] transition mb-4 ml-1"
+            className="group inline-flex items-center gap-2 font-medium lowercase text-[26px] text-[#c4714f] hover:text-[#a8583a] transition mb-4 ml-1"
           >
-            <span className="border-b border-transparent group-hover:border-[#c4714f] transition">
+            <span className="border-b border-transparent group-hover:border-[#a8583a] transition">
               let's get you set up
             </span>
             <span className="transition group-hover:translate-x-1">→</span>
