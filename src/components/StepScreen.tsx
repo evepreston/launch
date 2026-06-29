@@ -3,6 +3,7 @@ import Card from './Card';
 import ProgressBar from './ProgressBar';
 import RevenuePlanner from './RevenuePlanner';
 import BreakEvenCalculator from './BreakEvenCalculator';
+import PromoCodeBadge from './PromoCodeBadge';
 import { SECTIONS } from '../data/sections';
 import { withGlossary } from '../utils/withGlossary';
 import type { WizardStep } from '../types';
@@ -123,6 +124,8 @@ export default function StepScreen({
                 ))}
               </div>
             )}
+
+            {step.promo && <PromoCodeBadge promo={step.promo} />}
 
             {step.tool === 'revenuePlanner' && <RevenuePlanner />}
             {step.tool === 'breakEvenCalculator' && <BreakEvenCalculator />}

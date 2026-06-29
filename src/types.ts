@@ -11,6 +11,12 @@ export interface ExternalLink {
   url: string;
 }
 
+export interface PromoCode {
+  code: string;
+  discount: string;
+  note?: string;
+}
+
 export interface WizardStep {
   id: string;
   number: number;
@@ -20,4 +26,5 @@ export interface WizardStep {
   links: ExternalLink[];
   tool?: 'revenuePlanner' | 'breakEvenCalculator';
   isInfoOnly?: boolean;
+  promo?: PromoCode;
 }
