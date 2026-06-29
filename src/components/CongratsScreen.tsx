@@ -15,11 +15,11 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
         </div>
 
         <div className="relative z-10 flex flex-col items-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7d9b76] mb-6">
-            Private practice launch kit
+          <p className="text-lg sm:text-2xl font-semibold lowercase tracking-[0.2em] text-[#7d9b76] mb-6">
+            private practice launch kit
           </p>
-          <h1 className="font-serif-display text-5xl sm:text-7xl font-normal text-[#2c2c2a] tracking-tight leading-[1.05] max-w-3xl mb-6">
-            Getting licensed was the{' '}
+          <h1 className="font-serif-display text-3xl sm:text-4xl font-normal lowercase text-[#2c2c2a] tracking-tight leading-[1.05] max-w-3xl mb-6">
+            getting licensed was the{' '}
             <span className="relative inline-block">
               hard part.
               <svg
@@ -46,9 +46,9 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
           </p>
           <button
             onClick={onContinue}
-            className="group bg-white rounded-3xl shadow-[0_20px_50px_-15px_rgba(90,70,50,0.25)] border border-[#e6ddc9] px-10 py-5 flex items-center gap-3 font-semibold text-lg text-[#2c2c2a] hover:shadow-[0_24px_60px_-15px_rgba(90,70,50,0.32)] hover:-translate-y-0.5 transition"
+            className="group bg-white rounded-3xl shadow-[0_20px_50px_-15px_rgba(90,70,50,0.25)] border border-[#e6ddc9] px-10 py-5 flex items-center gap-3 font-semibold lowercase text-lg text-[#2c2c2a] hover:shadow-[0_24px_60px_-15px_rgba(90,70,50,0.32)] hover:-translate-y-0.5 transition"
           >
-            Let's get you set up
+            let's get you set up
             <span className="text-[#7d9b76] transition group-hover:translate-x-1">→</span>
           </button>
         </div>
