@@ -4,6 +4,7 @@ import CongratsScreen from './components/CongratsScreen';
 import DisclaimerScreen from './components/DisclaimerScreen';
 import StepScreen from './components/StepScreen';
 import CompletionScreen from './components/CompletionScreen';
+import CustomCursor from './components/CustomCursor';
 import { buildSteps } from './data/steps';
 import type { UserProfile } from './types';
 
@@ -46,12 +47,13 @@ function App() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }, [phase, profile, currentIndex, completedIds]);
 
-  if (phase === 'welcome') {
-    return <CongratsScreen onContinue={() => setPhase('intro')} />;
-  }
+  let screen: React.ReactNode;
+  let fadeKey: string = phase;
 
-  if (phase === 'intro' || !profile) {
-    return (
+  if (phase === 'welcome') {
+    screen = <CongratsScreen onContinue={() => setPhase('intro')} />;
+  } else if (phase === 'intro' || !profile) {
+    screen = (
       <IntroScreen
         onComplete={(p) => {
           setProfile(p);
@@ -59,41 +61,49 @@ function App() {
         }}
       />
     );
+  } else if (phase === 'disclaimer') {
+    screen = <DisclaimerScreen onContinue={() => setPhase('steps')} />;
+  } else {
+    const steps = buildSteps(profile);
+
+    if (phase === 'complete') {
+      screen = <CompletionScreen steps={steps} />;
+    } else {
+      const step = steps[currentIndex];
+      const isComplete = completedIds.has(step.id);
+      fadeKey = `${phase}-${currentIndex}`;
+
+      screen = (
+        <StepScreen
+          step={step}
+          index={currentIndex}
+          total={steps.length}
+          isComplete={isComplete}
+          canGoBack={currentIndex > 0}
+          steps={steps}
+          completedIds={completedIds}
+          onJump={(i) => setCurrentIndex(i)}
+          onBack={() => setCurrentIndex((i) => Math.max(0, i - 1))}
+          onComplete={() => setCompletedIds((prev) => new Set(prev).add(step.id))}
+          onNext={() => {
+            if (currentIndex === steps.length - 1) {
+              setPhase('complete');
+            } else {
+              setCurrentIndex((i) => i + 1);
+            }
+          }}
+        />
+      );
+    }
   }
-
-  if (phase === 'disclaimer') {
-    return <DisclaimerScreen onContinue={() => setPhase('steps')} />;
-  }
-
-  const steps = buildSteps(profile);
-
-  if (phase === 'complete') {
-    return <CompletionScreen steps={steps} />;
-  }
-
-  const step = steps[currentIndex];
-  const isComplete = completedIds.has(step.id);
 
   return (
-    <StepScreen
-      step={step}
-      index={currentIndex}
-      total={steps.length}
-      isComplete={isComplete}
-      canGoBack={currentIndex > 0}
-      steps={steps}
-      completedIds={completedIds}
-      onJump={(i) => setCurrentIndex(i)}
-      onBack={() => setCurrentIndex((i) => Math.max(0, i - 1))}
-      onComplete={() => setCompletedIds((prev) => new Set(prev).add(step.id))}
-      onNext={() => {
-        if (currentIndex === steps.length - 1) {
-          setPhase('complete');
-        } else {
-          setCurrentIndex((i) => i + 1);
-        }
-      }}
-    />
+    <>
+      <CustomCursor />
+      <div key={fadeKey} className="screen-fade">
+        {screen}
+      </div>
+    </>
   );
 }
 

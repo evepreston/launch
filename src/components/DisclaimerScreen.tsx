@@ -8,7 +8,7 @@ export default function DisclaimerScreen({ onContinue }: { onContinue: () => voi
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-xl w-full text-center">
           <OnboardingProgress step={3} total={3} />
-          <h1 className="text-3xl font-bold text-[#2c2c2a] mb-4 tracking-tight leading-tight">
+          <h1 className="text-3xl font-bold text-[#2c2c2a] mb-4 leading-tight">
             A note on our recommendations
           </h1>
           <p className="text-[#3a3a36] leading-relaxed">

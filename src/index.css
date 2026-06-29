@@ -17,6 +17,33 @@ body {
   margin: 0;
   background: #f5f2ea;
   color: #2c2c2a;
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #7d9b76;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform;
+}
+
+.screen-fade {
+  animation: screenFade 200ms ease-in-out;
+}
+
+@keyframes screenFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes marquee {

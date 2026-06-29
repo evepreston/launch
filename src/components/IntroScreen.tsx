@@ -34,7 +34,7 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
                 setShowNotYet(false);
                 setLicensed(null);
               }}
-              className="text-[#7d9b76] font-medium hover:underline"
+              className="text-[#7d9b76] font-medium hover:text-[#c4714f] hover:underline transition"
             >
               ← Go back
             </button>
@@ -49,7 +49,7 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-xl w-full">
           <OnboardingProgress step={2} total={3} />
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#2c2c2a] mb-2 tracking-tight leading-tight text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#2c2c2a] mb-2 leading-tight text-center">
             Let's make sure this is the right fit
           </h1>
           <p className="text-[#5a5a52] mb-8 text-center">

@@ -4,17 +4,8 @@ import Marquee from './Marquee';
 export default function CongratsScreen({ onContinue }: { onContinue: () => void }) {
   return (
     <Shell showHeader={false}>
-      <Marquee />
-      <div className="flex-1 relative overflow-hidden flex flex-col items-center justify-center text-center px-6 py-24">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gradient-to-br from-[#a8c2a1] to-[#7d9b76] opacity-30 blur-3xl" />
-          <div className="absolute top-1/4 -right-40 w-[28rem] h-[28rem] rounded-full bg-gradient-to-br from-[#dba98a] to-[#c4714f] opacity-30 blur-3xl" />
-          <div className="absolute -bottom-40 left-1/4 w-96 h-96 rounded-full bg-gradient-to-br from-[#7d9b76] to-[#4f6b49] opacity-15 blur-3xl" />
-          <div className="absolute top-10 right-1/4 w-24 h-24 rounded-3xl border-2 border-[#a8c2a1]/40 rotate-12" />
-          <div className="absolute bottom-24 left-1/5 w-16 h-16 rounded-full border-2 border-[#c4714f]/50" />
-        </div>
-
-        <div className="relative z-10 flex flex-col items-center">
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-6 py-24">
+        <div className="flex flex-col items-center">
           <p className="font-label text-lg sm:text-2xl font-normal lowercase text-[#7d9b76] mb-6">
             private practice launch kit
           </p>
@@ -52,15 +43,19 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
           </p>
           <button
             onClick={onContinue}
-            className="group bg-white rounded-3xl shadow-[0_20px_50px_-15px_rgba(90,70,50,0.25)] border border-[#e6ddc9] px-10 py-5 flex items-center gap-3 font-medium lowercase text-lg text-[#2c2c2a] hover:shadow-[0_24px_60px_-15px_rgba(90,70,50,0.32)] hover:-translate-y-0.5 transition"
+            className="group inline-flex items-center gap-2 font-medium lowercase text-lg text-[#7d9b76] hover:text-[#c4714f] transition"
           >
-            let's get you set up
-            <span className="text-[#7d9b76] transition group-hover:translate-x-1">→</span>
+            <span className="border-b border-transparent group-hover:border-[#c4714f] transition">
+              let's get you set up
+            </span>
+            <span className="transition group-hover:translate-x-1">→</span>
           </button>
         </div>
       </div>
 
-      <div className="relative z-10 bg-[#f0ead8] px-6 py-20">
+      <Marquee />
+
+      <div className="bg-[#f0ead8] px-6 py-20">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-serif-display text-3xl sm:text-4xl text-[#2c2c2a] mb-6">
             why this exists

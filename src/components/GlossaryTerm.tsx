@@ -11,7 +11,7 @@ export default function GlossaryTerm({
 
   return (
     <span
-      className="relative inline-block border-b border-dotted border-[#a8c2a1] text-[#5d7d56] cursor-help"
+      className="relative inline-block border-b border-dotted border-[#a8c2a1] text-[#5d7d56] hover:text-[#c4714f] hover:border-[#c4714f] cursor-help transition"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       onClick={() => setOpen((o) => !o)}

@@ -97,7 +97,7 @@ export default function StepScreen({
             <span className="inline-block text-xs font-semibold text-[#7d9b76] bg-[#eaeee3] px-3 py-1 rounded-full mb-4">
               Step {index + 1} of {total}
             </span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#2c2c2a] mb-2 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#2c2c2a] mb-2">
               {step.title}
             </h1>
             <p className="text-[#7d9b76] font-medium mb-6">{withGlossary(step.summary)}</p>
@@ -134,7 +134,7 @@ export default function StepScreen({
               <button
                 onClick={onBack}
                 disabled={!canGoBack}
-                className="px-5 py-3 rounded-xl font-medium lowercase text-[#5a5a52] disabled:opacity-0 hover:bg-[#f0f2e9] transition"
+                className="px-5 py-3 rounded-xl font-medium lowercase text-[#5a5a52] disabled:opacity-0 hover:text-[#c4714f] transition"
               >
                 ← back
               </button>

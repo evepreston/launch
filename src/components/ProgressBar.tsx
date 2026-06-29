@@ -22,7 +22,7 @@ export default function ProgressBar({
     sectionStepsTotal === 0 ? 0 : Math.round((sectionStepsDone / sectionStepsTotal) * 100);
 
   return (
-    <div className="w-full sticky top-[73px] z-10 bg-[#f5f2ea]/80 backdrop-blur border-b border-[#e6ddc9]">
+    <div className="w-full sticky top-[73px] z-10 bg-[#f5f2ea]/80 backdrop-blur">
       <div className="max-w-3xl mx-auto px-6 pt-6 pb-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium text-[#5a5a52] lowercase">
