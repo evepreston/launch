@@ -5,7 +5,6 @@ import DisclaimerScreen from './components/DisclaimerScreen';
 import StepScreen from './components/StepScreen';
 import CompletionScreen from './components/CompletionScreen';
 import AboutScreen from './components/AboutScreen';
-import CustomCursor from './components/CustomCursor';
 import { buildSteps } from './data/steps';
 import type { UserProfile } from './types';
 
@@ -109,12 +108,9 @@ function App() {
   }
 
   return (
-    <>
-      <CustomCursor />
-      <div key={fadeKey} className="screen-fade">
-        {screen}
-      </div>
-    </>
+    <div key={fadeKey} className="screen-fade">
+      {screen}
+    </div>
   );
 }
 
