@@ -195,10 +195,12 @@ export function buildSteps(profile: UserProfile): WizardStep[] {
       body: [
         'EHR stands for Electronic Health Record — it\'s the software that runs your practice. It handles your client scheduling, intake forms, session notes, billing, insurance claims, and secure client messaging all in one place.',
         "Here's something that surprises a lot of therapists: your EHR also handles telehealth. You don't need a separate Zoom account or video platform. SimplePractice, the most widely used EHR among private practice therapists, has HIPAA compliant video sessions built directly in. Your client gets a link, they click it, you meet. No extra app, no separate subscription.",
-        'If you ever want a standalone telehealth option, Doxy.me has a free HIPAA compliant tier that many therapists use. But for most people starting out, SimplePractice handles everything.',
+        'TherapyNotes is a solid alternative — it covers the same ground (scheduling, notes, billing, claims, telehealth) and is especially popular with therapists who want strong built-in billing and insurance claim tools.',
+        'If you ever want a standalone telehealth option, Doxy.me has a free HIPAA compliant tier that many therapists use. But for most people starting out, SimplePractice or TherapyNotes handles everything.',
       ],
       links: [
         { label: 'SimplePractice', url: 'https://www.simplepractice.com' },
+        { label: 'TherapyNotes', url: 'https://www.therapynotes.com' },
         { label: 'Doxy.me', url: 'https://doxy.me' },
       ],
     },
