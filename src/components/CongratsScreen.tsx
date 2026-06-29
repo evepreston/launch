@@ -24,8 +24,8 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
       </header>
 
       <main className="flex-1 flex flex-col px-6 sm:px-12 py-20 sm:py-28">
-        <div className="max-w-3xl">
-          <h1 className="font-display font-bold lowercase text-[#2c2c2a] leading-[1.05] text-[38px] sm:text-[54px] lg:text-[65px] mb-8">
+        <div className="w-full max-w-[1100px]">
+          <h1 className="font-display font-bold lowercase text-[#2c2c2a] leading-[1.05] text-[38px] sm:text-[54px] lg:text-[65px] mb-8 w-full sm:w-[70%]">
             getting licensed was the{' '}
             <span className="relative inline-block">
               hard part.
@@ -47,14 +47,14 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
             </span>
           </h1>
 
-          <p className="text-[22px] text-[#5a5a52] leading-relaxed max-w-xl mb-8">
+          <p className="text-[22px] text-[#5a5a52] leading-relaxed max-w-2xl mb-12">
             opening your private practice isn't as hard as it looks. this is the stuff nobody
             teaches you, laid out in the right order.
           </p>
 
           <button
             onClick={onContinue}
-            className="group inline-flex items-center gap-2 font-medium lowercase text-[22px] text-[#7d9b76] hover:text-[#c4714f] transition mb-8 ml-1"
+            className="group inline-flex items-center gap-2 font-medium lowercase text-[22px] text-[#7d9b76] hover:text-[#c4714f] transition mb-4 ml-1"
           >
             <span className="border-b border-transparent group-hover:border-[#c4714f] transition">
               let's get you set up
