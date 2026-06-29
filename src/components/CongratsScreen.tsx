@@ -3,8 +3,10 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
     <div className="min-h-screen flex flex-col bg-[#f5f2ea]">
       <header className="w-full px-6 sm:px-12 py-5 border-b border-[#e6ddc9]">
         <div className="flex items-center justify-between">
-          <span className="text-[13px] font-normal lowercase text-[#7d9b76]">
-            private practice launch kit
+          <span className="font-display font-bold text-[13px] lowercase whitespace-nowrap">
+            <span className="text-[#7d9b76]">private practice</span>
+            <span className="text-[#2c2c2a]"> launch kit</span>
+            <span className="text-[#c4714f]">.</span>
           </span>
           <nav className="flex items-center gap-6">
             <a
@@ -48,7 +50,8 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
           </h1>
 
           <p className="text-[22px] text-[#5a5a52] leading-relaxed max-w-2xl mb-12">
-            opening your private practice isn't as hard as it feels.{' '}
+            opening your private practice isn't as hard as it looks
+            <br />
             <span className="text-[#7d9b76]">
               we're here to guide you through the process, one step at a time.*
             </span>
