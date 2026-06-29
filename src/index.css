@@ -9,6 +9,10 @@
   font-style: italic;
 }
 
+.font-display {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
 .font-label {
   font-family: 'Plus Jakarta Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
 }
