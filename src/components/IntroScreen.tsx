@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import Shell from './Shell';
-import Card from './Card';
-import OnboardingProgress from './OnboardingProgress';
 import { US_STATES } from '../data/states';
 import type { LicenseType, UserProfile } from '../types';
 
@@ -18,27 +16,27 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
   if (showNotYet) {
     return (
       <Shell>
-        <div className="flex-1 flex items-center justify-center px-6 py-16">
-          <Card className="max-w-lg text-center">
-            <h1 className="text-2xl font-semibold text-[#2c2c2a] mb-3">
-              We'll be here when you're ready
+        <div className="flex-1 flex flex-col px-6 sm:px-12 py-20 sm:py-28">
+          <div className="max-w-xl">
+            <h1 className="font-display font-bold lowercase text-[#2c2c2a] text-[38px] sm:text-[48px] leading-[1.05] mb-6">
+              we'll be here when you're ready.
             </h1>
-            <p className="text-[#5a5a52] leading-relaxed mb-6">
-              This platform is built for fully licensed therapists opening a private practice.
-              It sounds like you're not quite there yet — and that's completely okay. Keep going
+            <p className="text-[18px] text-[#5a5a52] leading-relaxed mb-10">
+              this platform is built for fully licensed therapists opening a private practice.
+              it sounds like you're not quite there yet — and that's completely okay. keep going
               with supervision, finish out your hours, and come back the moment your license is
-              active. We'll be ready for you.
+              active.
             </p>
             <button
               onClick={() => {
                 setShowNotYet(false);
                 setLicensed(null);
               }}
-              className="text-[#7d9b76] font-medium hover:text-[#c4714f] hover:underline transition"
+              className="text-[#7d9b76] font-medium lowercase hover:text-[#6b8a64] transition"
             >
-              ← Go back
+              ← go back
             </button>
-          </Card>
+          </div>
         </div>
       </Shell>
     );
@@ -46,84 +44,82 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
 
   return (
     <Shell>
-      <div className="flex-1 flex items-center justify-center px-6 py-16">
-        <Card className="max-w-xl w-full">
-          <OnboardingProgress step={2} total={3} />
-          <h1 className="text-3xl sm:text-4xl font-bold text-[#2c2c2a] mb-2 leading-tight text-center">
-            Let's make sure this is the right fit
+      <div className="flex-1 flex flex-col px-6 sm:px-12 py-20 sm:py-28">
+        <div className="max-w-xl">
+          <h1 className="font-display font-bold lowercase text-[#2c2c2a] text-[38px] sm:text-[48px] leading-[1.05] mb-4">
+            let's make sure this is the right fit.
           </h1>
-          <p className="text-[#5a5a52] mb-8 text-center">
-            Before we get started, let's make sure this is the right fit for where you are in
-            your journey. Three quick questions.
+          <p className="text-[18px] text-[#5a5a52] leading-relaxed mb-12">
+            three quick questions before we get started.
           </p>
 
-          <div className="space-y-7">
+          <div className="space-y-10">
             <div>
-              <label className="block font-medium text-[#2c2c2a] mb-2">
-                What state are you licensed to practice in?
+              <label className="block text-[#2c2c2a] lowercase mb-2">
+                what state are you licensed to practice in?
               </label>
               <select
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                className="w-full border border-[#ddd5c0] rounded-xl px-4 py-3 bg-[#faf8f2] text-[#2c2c2a] focus:outline-none focus:ring-2 focus:ring-[#a8c2a1]"
+                className="w-full border border-[#d9d3c2] rounded-lg px-4 py-2.5 bg-[#f5f2ea] text-[#2c2c2a] text-sm focus:outline-none focus:ring-1 focus:ring-[#a8c2a1]"
               >
-                <option value="">Select your state...</option>
+                <option value="">select your state...</option>
                 {US_STATES.map((s) => (
                   <option key={s} value={s}>
                     {s}
                   </option>
                 ))}
               </select>
-              <p className="text-sm text-[#6b6b62] mt-1">
-                This populates state-specific links, fees, and requirements throughout the guide.
+              <p className="text-sm text-[#8a8a80] mt-1.5">
+                populates state-specific links, fees, and requirements throughout the guide.
               </p>
             </div>
 
             <div>
-              <label className="block font-medium text-[#2c2c2a] mb-2">
-                Do you hold a current, active, full license in that state? (Not provisional, not
-                supervised.)
+              <label className="block text-[#2c2c2a] lowercase mb-3">
+                do you hold a current, active, full license in that state?
+                <span className="text-[#8a8a80]"> (not provisional, not supervised.)</span>
               </label>
               <div className="flex gap-3">
                 <button
                   onClick={() => setLicensed(true)}
-                  className={`flex-1 py-3 rounded-xl border font-medium transition ${
+                  className={`flex-1 py-2 rounded-lg border text-sm lowercase transition ${
                     licensed === true
-                      ? 'bg-[#7d9b76] text-white border-[#7d9b76]'
-                      : 'bg-[#faf8f2] text-[#2c2c2a] border-[#ddd5c0] hover:border-[#a8c2a1]'
+                      ? 'border-[#7d9b76] text-[#7d9b76] bg-[#f5f2ea]'
+                      : 'border-[#d9d3c2] text-[#5a5a52] bg-[#f5f2ea] hover:border-[#a8c2a1]'
                   }`}
                 >
-                  Yes, fully licensed
+                  yes, fully licensed
                 </button>
                 <button
                   onClick={() => {
                     setLicensed(false);
                     setShowNotYet(true);
                   }}
-                  className={`flex-1 py-3 rounded-xl border font-medium transition ${
+                  className={`flex-1 py-2 rounded-lg border text-sm lowercase transition ${
                     licensed === false
-                      ? 'bg-[#e6ddc9] text-[#2c2c2a] border-[#ddd5c0]'
-                      : 'bg-[#faf8f2] text-[#2c2c2a] border-[#ddd5c0] hover:border-[#c4714f]'
+                      ? 'border-[#d9d3c2] text-[#5a5a52] bg-[#f5f2ea]'
+                      : 'border-[#d9d3c2] text-[#5a5a52] bg-[#f5f2ea] hover:border-[#c4714f]'
                   }`}
                 >
-                  Not yet
+                  not yet
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block font-medium text-[#2c2c2a] mb-2">
-                What license type do you hold?
+              <label className="block text-[#2c2c2a] lowercase mb-3">
+                what license type do you hold?
               </label>
               <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                 {LICENSE_TYPES.map((lt) => (
                   <button
                     key={lt}
                     onClick={() => setLicenseType(lt)}
-                    className={`py-2 rounded-lg border text-sm font-medium transition ${
+                    className={`py-2 rounded-lg border text-sm lowercase transition ${
                       licenseType === lt
-                        ? 'bg-[#7d9b76] text-white border-[#7d9b76]'
-                        : 'bg-[#faf8f2] text-[#2c2c2a] border-[#ddd5c0] hover:border-[#a8c2a1]'
+                        ? 'border-[#7d9b76] text-[#7d9b76] bg-[#f5f2ea]'
+                        : 'border-[#d9d3c2] text-[#5a5a52] bg-[#f5f2ea] hover:border-[#a8c2a1]'
                     }`}
                   >
                     {lt}
@@ -133,17 +129,23 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
             </div>
           </div>
 
-          <button
-            disabled={!canContinue}
-            onClick={() =>
-              canContinue &&
-              onComplete({ state, isFullyLicensed: licensed, licenseType })
-            }
-            className="mt-10 w-full py-4 rounded-2xl font-semibold text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] disabled:bg-[#d9d3c2] disabled:bg-none disabled:cursor-not-allowed hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 disabled:shadow-none transition"
-          >
-            Continue
-          </button>
-        </Card>
+          <div className="mt-12">
+            <button
+              disabled={!canContinue}
+              onClick={() =>
+                canContinue &&
+                onComplete({ state, isFullyLicensed: licensed, licenseType })
+              }
+              className={`inline-flex items-center gap-2 font-medium lowercase text-[22px] transition ${
+                canContinue
+                  ? 'text-[#7d9b76] hover:text-[#6b8a64]'
+                  : 'text-[#c4c4b8] cursor-not-allowed'
+              }`}
+            >
+              continue →
+            </button>
+          </div>
+        </div>
       </div>
     </Shell>
   );

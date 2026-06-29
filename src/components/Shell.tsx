@@ -10,16 +10,13 @@ export default function Shell({
   return (
     <div className="min-h-screen flex flex-col relative bg-[#f5f2ea]">
       {showHeader && (
-        <header className="w-full py-4 px-6 bg-[#f5f2ea]/70 backdrop-blur-md sticky top-0 z-10">
-          <div className="max-w-3xl mx-auto flex items-center justify-between gap-2.5">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#7d9b76] to-[#6b8a64] flex items-center justify-center text-white text-sm font-bold shadow-sm shadow-[#7d9b76]/30">
-                P
-              </div>
-              <span className="font-label font-normal text-[#2c2c2a] text-lg lowercase">
-                private practice launch kit
-              </span>
-            </div>
+        <header className="w-full px-6 sm:px-12 py-5 border-b border-[#e6ddc9]">
+          <div className="flex items-center justify-between">
+            <a href="/" className="font-display font-bold text-[18px] lowercase whitespace-nowrap no-underline">
+              <span className="text-[#7d9b76]">private practice</span>
+              <span className="text-[#2c2c2a]"> launch kit</span>
+              <span className="text-[#c4714f]">.</span>
+            </a>
             <nav>
               <a
                 href="#about"
