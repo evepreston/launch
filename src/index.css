@@ -1,13 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  font-family: 'Poppins', system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-serif-display {
+  font-family: 'Instrument Serif', Georgia, serif;
 }
 
 body {
   margin: 0;
-  background: #faf7f0;
-  color: #2f3b2f;
+  background: #f5f2ea;
+  color: #2c2c2a;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 22s linear infinite;
 }
 
 a {
@@ -15,5 +32,5 @@ a {
 }
 
 ::selection {
-  background: #c9e0bf;
+  background: #d8e3d2;
 }

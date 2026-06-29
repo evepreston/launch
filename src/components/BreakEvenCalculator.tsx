@@ -16,27 +16,27 @@ export default function BreakEvenCalculator() {
 
   const field = (label: string, value: number, setValue: (v: number) => void, prefix = '$') => (
     <div>
-      <label className="block text-sm font-medium text-[#2f3b2f] mb-1">{label}</label>
+      <label className="block text-sm font-medium text-[#2c2c2a] mb-1">{label}</label>
       <div className="flex items-center gap-2">
-        <span className="text-[#5c6b52]">{prefix}</span>
+        <span className="text-[#5a5a52]">{prefix}</span>
         <input
           type="number"
           value={value}
           min={0}
           onChange={(e) => setValue(Number(e.target.value))}
-          className="w-full border border-[#d8d2bd] rounded-lg px-3 py-2 bg-white text-[#2f3b2f] focus:outline-none focus:ring-2 focus:ring-[#9bc18a]"
+          className="w-full border border-[#ddd5c0] rounded-lg px-3 py-2 bg-white text-[#2c2c2a] focus:outline-none focus:ring-2 focus:ring-[#a8c2a1]"
         />
       </div>
     </div>
   );
 
   return (
-    <div className="bg-[#f3f7ee] rounded-2xl p-6 mt-6">
-      <h3 className="font-semibold text-[#2f3b2f] mb-1">Break-Even Calculator</h3>
-      <p className="text-sm text-[#5c6b52] mb-5">
+    <div className="bg-[#f0f2e9] rounded-2xl p-6 mt-6">
+      <h3 className="font-semibold text-[#2c2c2a] mb-1">Break-Even Calculator</h3>
+      <p className="text-sm text-[#5a5a52] mb-5">
         Here's exactly what you need to cover your costs.
       </p>
-      <p className="text-sm font-medium text-[#2f3b2f] mb-2">Monthly expenses</p>
+      <p className="text-sm font-medium text-[#2c2c2a] mb-2">Monthly expenses</p>
       <div className="grid sm:grid-cols-2 gap-4 mb-5">
         {field('EHR / telehealth', ehr, setEhr)}
         {field('Insurance', insurance, setInsurance)}
@@ -44,19 +44,19 @@ export default function BreakEvenCalculator() {
         {field('Rent (if applicable)', rent, setRent)}
         {field('Other', other, setOther)}
       </div>
-      <p className="text-sm font-medium text-[#2f3b2f] mb-2">Your practice</p>
+      <p className="text-sm font-medium text-[#2c2c2a] mb-2">Your practice</p>
       <div className="grid sm:grid-cols-2 gap-4">
         {field('Session rate', rate, setRate)}
         {field('Clients per week', clientsPerWeek, setClientsPerWeek, '')}
       </div>
       <div className="mt-6 grid sm:grid-cols-2 gap-4">
-        <div className="bg-white rounded-xl p-4 text-center border border-[#e7e2d3]">
-          <p className="text-sm text-[#5c6b52]">Sessions needed per month to break even</p>
-          <p className="text-2xl font-semibold text-[#6f9c63]">{sessionsToBreakEven}</p>
+        <div className="bg-white rounded-xl p-4 text-center border border-[#e6ddc9]">
+          <p className="text-sm text-[#5a5a52]">Sessions needed per month to break even</p>
+          <p className="text-2xl font-semibold text-[#7d9b76]">{sessionsToBreakEven}</p>
         </div>
-        <div className="bg-white rounded-xl p-4 text-center border border-[#e7e2d3]">
-          <p className="text-sm text-[#5c6b52]">Estimated net annual income</p>
-          <p className="text-2xl font-semibold text-[#6f9c63]">
+        <div className="bg-white rounded-xl p-4 text-center border border-[#e6ddc9]">
+          <p className="text-sm text-[#5a5a52]">Estimated net annual income</p>
+          <p className="text-2xl font-semibold text-[#7d9b76]">
             ${netAnnual.toLocaleString(undefined, { maximumFractionDigits: 0 })}
           </p>
         </div>

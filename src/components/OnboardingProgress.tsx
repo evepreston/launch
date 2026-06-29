@@ -5,7 +5,7 @@ export default function OnboardingProgress({ step, total }: { step: number; tota
         <div
           key={i}
           className={`h-1.5 rounded-full transition-all ${
-            i === step - 1 ? 'w-8 bg-[#6f9c63]' : 'w-1.5 bg-[#e7e2d3]'
+            i === step - 1 ? 'w-8 bg-[#7d9b76]' : 'w-1.5 bg-[#e6ddc9]'
           }`}
         />
       ))}

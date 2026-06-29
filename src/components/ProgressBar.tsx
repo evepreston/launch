@@ -22,21 +22,21 @@ export default function ProgressBar({
     sectionStepsTotal === 0 ? 0 : Math.round((sectionStepsDone / sectionStepsTotal) * 100);
 
   return (
-    <div className="w-full sticky top-[73px] z-10 bg-[#faf7f0]/80 backdrop-blur border-b border-[#e7e2d3]">
+    <div className="w-full sticky top-[73px] z-10 bg-[#f5f2ea]/80 backdrop-blur border-b border-[#e6ddc9]">
       <div className="max-w-3xl mx-auto px-6 pt-6 pb-4">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-[#5c6b52]">
-            Section {sectionIndex + 1} of {totalSections} — {sectionTitle}
+          <span className="text-sm font-medium text-[#5a5a52] lowercase">
+            section {sectionIndex + 1} of {totalSections} — {sectionTitle}
           </span>
-          <span className="text-sm font-medium text-[#5c6b52]">{overallPct}% complete</span>
+          <span className="text-sm font-medium text-[#5a5a52]">{overallPct}% complete</span>
         </div>
         <div className="flex gap-1.5">
           {Array.from({ length: totalSections }).map((_, i) => {
             const fillPct = i < sectionIndex ? 100 : i === sectionIndex ? sectionPct : 0;
             return (
-              <div key={i} className="flex-1 h-3 rounded-full bg-[#e7e2d3] overflow-hidden">
+              <div key={i} className="flex-1 h-3 rounded-full bg-[#e6ddc9] overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#6f9c63] to-[#9bc18a] transition-all duration-500 ease-out"
+                  className="h-full rounded-full bg-gradient-to-r from-[#7d9b76] to-[#a8c2a1] transition-all duration-500 ease-out"
                   style={{ width: `${fillPct}%` }}
                 />
               </div>

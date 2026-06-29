@@ -55,7 +55,7 @@ export default function StepScreen({
         <aside className="hidden lg:block w-56 shrink-0">
           {SECTIONS.map((sec) => (
             <div key={sec.id} className="mb-5">
-              <p className="text-xs font-semibold text-[#8a8a76] uppercase tracking-wide mb-2">
+              <p className="text-xs font-semibold text-[#6b6b62] lowercase tracking-wide mb-2">
                 {sec.title}
               </p>
               <ol className="space-y-1">
@@ -71,13 +71,13 @@ export default function StepScreen({
                         onClick={() => onJump(i)}
                         className={`w-full text-left text-sm px-3 py-2 rounded-lg flex items-center gap-2 transition ${
                           active
-                            ? 'bg-[#e6efe0] text-[#2f3b2f] font-medium'
-                            : 'text-[#5c6b52] hover:bg-[#f3f7ee]'
+                            ? 'bg-[#eaeee3] text-[#2c2c2a] font-medium'
+                            : 'text-[#5a5a52] hover:bg-[#f0f2e9]'
                         }`}
                       >
                         <span
                           className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0 ${
-                            done ? 'bg-[#6f9c63] text-white' : 'bg-[#e7e2d3] text-[#8a8a76]'
+                            done ? 'bg-[#7d9b76] text-white' : 'bg-[#e6ddc9] text-[#6b6b62]'
                           }`}
                         >
                           {done ? '✓' : i + 1}
@@ -94,15 +94,15 @@ export default function StepScreen({
 
         <div className="flex-1">
           <Card>
-            <span className="inline-block text-xs font-semibold text-[#6f9c63] bg-[#e6efe0] px-3 py-1 rounded-full mb-4">
+            <span className="inline-block text-xs font-semibold text-[#7d9b76] bg-[#eaeee3] px-3 py-1 rounded-full mb-4">
               Step {index + 1} of {total}
             </span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#2f3b2f] mb-2 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#2c2c2a] mb-2 tracking-tight">
               {step.title}
             </h1>
-            <p className="text-[#6f9c63] font-medium mb-6">{withGlossary(step.summary)}</p>
+            <p className="text-[#7d9b76] font-medium mb-6">{withGlossary(step.summary)}</p>
 
-            <div className="space-y-4 text-[#4a5743] leading-relaxed">
+            <div className="space-y-4 text-[#3a3a36] leading-relaxed">
               {step.body.map((p, i) => (
                 <p key={i}>{withGlossary(p)}</p>
               ))}
@@ -116,7 +116,7 @@ export default function StepScreen({
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#fdf6e7] border border-[#e7d8ab] text-[#8a6a1f] font-medium hover:bg-[#fbeecb] transition"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#f7ebe3] border border-[#e0c4ab] text-[#9c5234] font-medium hover:bg-[#f0dccb] transition"
                   >
                     {link.label}
                     <span aria-hidden>↗</span>
@@ -134,7 +134,7 @@ export default function StepScreen({
               <button
                 onClick={onBack}
                 disabled={!canGoBack}
-                className="px-5 py-3 rounded-xl font-medium text-[#5c6b52] disabled:opacity-0 hover:bg-[#f3f7ee] transition"
+                className="px-5 py-3 rounded-xl font-medium text-[#5a5a52] disabled:opacity-0 hover:bg-[#f0f2e9] transition"
               >
                 ← Back
               </button>
@@ -142,14 +142,14 @@ export default function StepScreen({
               {isComplete ? (
                 <button
                   onClick={onNext}
-                  className="px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-[#6f9c63] to-[#5e8a52] hover:brightness-105 shadow-lg shadow-[#6f9c63]/25 transition"
+                  className="px-6 py-3 rounded-2xl font-semibold text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 transition"
                 >
                   {index === total - 1 ? 'Finish' : 'Next step →'}
                 </button>
               ) : (
                 <button
                   onClick={onComplete}
-                  className="px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-[#6f9c63] to-[#5e8a52] hover:brightness-105 shadow-lg shadow-[#6f9c63]/25 transition"
+                  className="px-6 py-3 rounded-2xl font-semibold text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 transition"
                 >
                   Mark step complete
                 </button>
