@@ -37,8 +37,15 @@ export function buildSteps(profile: UserProfile): WizardStep[] {
       body: [
         'Your personal cell phone is not HIPAA compliant for client communication.',
         'RingRx provides a HIPAA-compliant phone line, voicemail, text, and fax — all separate from your personal number.',
+        'Recommended HIPAA-compliant phone and fax options: RingRx, built specifically for healthcare providers. Spruce Health, popular with therapists, includes secure messaging. iPlum, a HIPAA compliant phone line, fax, and texting.',
+        'Google Voice is only HIPAA compliant if you have a paid Google Workspace account AND explicitly request a Business Associate Agreement from Google. Standard free consumer Google Voice accounts are not HIPAA compliant, and Google Voice does not include fax.',
+        'A free personal Google Voice account is not an acceptable option for client communication.',
       ],
-      links: [{ label: 'RingRx', url: 'https://ringrx.com' }],
+      links: [
+        { label: 'RingRx', url: 'https://ringrx.com' },
+        { label: 'Spruce Health', url: 'https://www.sprucehealth.com' },
+        { label: 'iPlum', url: 'https://www.iplum.com' },
+      ],
     },
     'npi-number': {
       id: 'npi-number',
@@ -89,6 +96,7 @@ export function buildSteps(profile: UserProfile): WizardStep[] {
         "Your EIN is your business's tax ID number — like a social security number for your LLC.",
         'You need it to open a bank account and for credentialing.',
         "It's free and takes about 5 minutes online.",
+        'A heads up: you will likely see companies online offering to get your EIN for you for a fee. You do not need them. The IRS lets you apply directly, for free, in about 5 minutes. Do not pay for this.',
       ],
       links: [{ label: 'IRS — Apply for an EIN', url: 'https://www.irs.gov/ein' }],
     },
@@ -96,14 +104,11 @@ export function buildSteps(profile: UserProfile): WizardStep[] {
       id: 'bank-account',
       number: 0,
       title: 'Open a business bank account',
-      summary: 'Built-for-therapists options, or your existing bank.',
+      summary: 'Your existing bank works fine — fintech options exist too.',
       body: [
-        'You have a few good options here. Two platforms are built specifically for therapists and self-employed people in private practice:',
-        'Found combines business banking with automatic tax tracking — it estimates your quarterly taxes as you earn and sets the money aside automatically, which is genuinely useful in your first year when tax season can be a shock. Free to start.',
-        'Heard goes further, bundling banking with done-for-you bookkeeping and year-round tax support from people who specialize in therapists.',
-        "A note on these options: both Found and Heard are financial technology companies, not traditional banks. That might sound less secure, but it isn't — their banking services are provided by FDIC-insured partner banks, meaning your money is protected up to $250,000, the same as at any traditional bank. The fintech layer just means a better app and features built for how you actually work.",
-        'Your existing bank works fine too — any business checking account gets the job done.',
-        'Whatever you choose, make sure to get a bank letter confirming you opened the account, with your LLC name and EIN on it. Some insurers require this during credentialing for direct deposit setup.',
+        'The simplest and safest option is to open a business checking account at your existing personal bank or any FDIC-insured institution — Chase, Bank of America, a local credit union, wherever you already bank. They know you, the process is straightforward, and your money is fully protected.',
+        'There are also fintech platforms marketed specifically to therapists, like Found and Heard. Some therapists find them useful, particularly for built-in tax tracking and bookkeeping features. However, they require your own due diligence before signing up — some have had customer complaints, longer wait times for accessing your money, and less straightforward support than a traditional bank. They are not inherently scams but the space has attracted some less reputable players. If you go this route, research carefully and read recent reviews.',
+        'Whatever you choose: make sure to get a bank letter confirming you opened the account, with your LLC name and EIN on it. Some insurers require this during credentialing for direct deposit setup.',
       ],
       links: [
         { label: 'Found', url: 'https://found.com/therapists' },
