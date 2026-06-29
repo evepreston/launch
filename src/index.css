@@ -25,17 +25,18 @@
   font-family: 'Plus Jakarta Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
 }
 
+html {
+  cursor: url('/cursor-hand.svg') 5 3, auto;
+}
+
+* {
+  cursor: inherit;
+}
+
 body {
   margin: 0;
   background: #f5f2ea;
   color: #2c2c2a;
-  cursor: url('/cursor-hand.svg') 5 3, auto;
-}
-
-a,
-button,
-[role='button'] {
-  cursor: url('/cursor-hand.svg') 5 3, auto;
 }
 
 .screen-fade {

@@ -12,11 +12,14 @@ export default function Shell({
       {showHeader && (
         <header className="w-full px-6 sm:px-12 py-5 border-b border-[#e6ddc9]">
           <div className="flex items-center justify-between">
-            <a href="/" className="font-display font-bold text-[18px] lowercase whitespace-nowrap no-underline">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('go-home'))}
+              className="font-display font-bold text-[18px] lowercase whitespace-nowrap text-left"
+            >
               <span className="text-[#7d9b76]">private practice</span>
               <span className="text-[#2c2c2a]"> launch kit</span>
               <span className="text-[#c4714f]">.</span>
-            </a>
+            </button>
             <nav>
               <a
                 href="#about"

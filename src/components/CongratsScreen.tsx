@@ -59,9 +59,9 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
 
           <button
             onClick={onContinue}
-            className="inline-flex items-center gap-2 font-medium lowercase text-[26px] text-[#7d9b76] hover:text-[#6b8a64] transition mb-4 ml-1"
+            className="inline-flex items-center gap-2 font-medium lowercase text-[26px] text-[#c4714f] hover:text-[#a8583a] transition mb-4 ml-1"
           >
-            let's get you set up →
+            <span className="border-b border-[#c4714f]">let's get you set up</span> →
           </button>
 
           <p className="text-[13px] lowercase text-[#8a8a80] ml-1 mt-28">

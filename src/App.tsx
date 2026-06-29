@@ -54,6 +54,12 @@ function App() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }, [phase, profile, currentIndex, completedIds]);
 
+  useEffect(() => {
+    const goHome = () => setPhase('welcome');
+    window.addEventListener('go-home', goHome);
+    return () => window.removeEventListener('go-home', goHome);
+  }, []);
+
   let screen: React.ReactNode;
   let fadeKey: string = phase;
 
