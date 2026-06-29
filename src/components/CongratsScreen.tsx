@@ -57,24 +57,18 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
 
       <div className="bg-[#f0ead8] px-6 py-20">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-serif-display text-3xl sm:text-4xl text-[#2c2c2a] mb-6">
-            why this exists
-          </h2>
-          <div className="space-y-5 text-[#3a3a36] leading-relaxed text-left">
-            <p>
-              When I finished my licensure, I was proud — and completely overwhelmed. Nobody
-              hands you a roadmap for the business side of private practice. I spent weeks
-              Googling things that should have taken an afternoon, making decisions that
-              stressed me out when they didn't need to, and wishing someone who had been
-              through it would just tell me what to do.
-            </p>
-            <p>
-              This is that thing. Everything I wish I'd had — the right steps, in the right
-              order, with the confusing parts explained in plain English. Built for therapists
-              by a therapist, because you've already done the hard part.
-            </p>
-            <p>Now let's get your practice open.</p>
-          </div>
+          <p className="text-[#3a3a36] leading-relaxed mb-4">
+            this was built by a therapist who's been through it.
+          </p>
+          <a
+            href="#about"
+            className="group inline-flex items-center gap-2 font-medium lowercase text-[#7d9b76] hover:text-[#c4714f] transition"
+          >
+            <span className="border-b border-transparent group-hover:border-[#c4714f] transition">
+              learn more
+            </span>
+            <span className="transition group-hover:translate-x-1">→</span>
+          </a>
         </div>
       </div>
     </Shell>

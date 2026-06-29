@@ -4,6 +4,7 @@ import CongratsScreen from './components/CongratsScreen';
 import DisclaimerScreen from './components/DisclaimerScreen';
 import StepScreen from './components/StepScreen';
 import CompletionScreen from './components/CompletionScreen';
+import AboutScreen from './components/AboutScreen';
 import CustomCursor from './components/CustomCursor';
 import { buildSteps } from './data/steps';
 import type { UserProfile } from './types';
@@ -36,6 +37,13 @@ function App() {
   const [completedIds, setCompletedIds] = useState<Set<string>>(
     new Set(saved?.completedIds ?? [])
   );
+  const [hash, setHash] = useState(() => window.location.hash);
+
+  useEffect(() => {
+    const onHashChange = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   useEffect(() => {
     const data: PersistedState = {
@@ -50,7 +58,10 @@ function App() {
   let screen: React.ReactNode;
   let fadeKey: string = phase;
 
-  if (phase === 'welcome') {
+  if (hash === '#about') {
+    fadeKey = 'about';
+    screen = <AboutScreen onBackToWizard={() => (window.location.hash = '')} />;
+  } else if (phase === 'welcome') {
     screen = <CongratsScreen onContinue={() => setPhase('intro')} />;
   } else if (phase === 'intro' || !profile) {
     screen = (
