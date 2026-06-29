@@ -5,7 +5,12 @@
 }
 
 .font-serif-display {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+}
+
+.font-label {
+  font-family: 'Plus Jakarta Sans', system-ui, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {

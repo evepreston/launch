@@ -55,7 +55,7 @@ export default function StepScreen({
         <aside className="hidden lg:block w-56 shrink-0">
           {SECTIONS.map((sec) => (
             <div key={sec.id} className="mb-5">
-              <p className="text-xs font-semibold text-[#6b6b62] lowercase tracking-wide mb-2">
+              <p className="font-label text-xs font-normal text-[#6b6b62] lowercase mb-2">
                 {sec.title}
               </p>
               <ol className="space-y-1">
@@ -134,24 +134,24 @@ export default function StepScreen({
               <button
                 onClick={onBack}
                 disabled={!canGoBack}
-                className="px-5 py-3 rounded-xl font-medium text-[#5a5a52] disabled:opacity-0 hover:bg-[#f0f2e9] transition"
+                className="px-5 py-3 rounded-xl font-medium lowercase text-[#5a5a52] disabled:opacity-0 hover:bg-[#f0f2e9] transition"
               >
-                ← Back
+                ← back
               </button>
 
               {isComplete ? (
                 <button
                   onClick={onNext}
-                  className="px-6 py-3 rounded-2xl font-semibold text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 transition"
+                  className="px-6 py-3 rounded-2xl font-medium lowercase text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 transition"
                 >
-                  {index === total - 1 ? 'Finish' : 'Next step →'}
+                  {index === total - 1 ? 'finish' : 'next step →'}
                 </button>
               ) : (
                 <button
                   onClick={onComplete}
-                  className="px-6 py-3 rounded-2xl font-semibold text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 transition"
+                  className="px-6 py-3 rounded-2xl font-medium lowercase text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 transition"
                 >
-                  Mark step complete
+                  mark step complete
                 </button>
               )}
             </div>

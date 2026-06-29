@@ -16,7 +16,7 @@ export default function Shell({ children, showHeader = true }: { children: React
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#7d9b76] to-[#6b8a64] flex items-center justify-center text-white text-sm font-bold shadow-sm shadow-[#7d9b76]/30">
               P
             </div>
-            <span className="font-semibold text-[#2c2c2a] text-lg tracking-tight">
+            <span className="font-label font-normal text-[#2c2c2a] text-lg lowercase">
               private practice launch kit
             </span>
           </div>
