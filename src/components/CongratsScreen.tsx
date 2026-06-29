@@ -3,7 +3,7 @@ import Marquee from './Marquee';
 
 export default function CongratsScreen({ onContinue }: { onContinue: () => void }) {
   return (
-    <Shell>
+    <Shell showHeader={false}>
       <Marquee />
       <div className="flex-1 relative overflow-hidden flex flex-col items-center justify-center text-center px-6 py-24">
         <div className="pointer-events-none absolute inset-0">
