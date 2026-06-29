@@ -97,7 +97,7 @@ export default function StepScreen({
             <span className="inline-block text-xs font-semibold text-[#6f9c63] bg-[#e6efe0] px-3 py-1 rounded-full mb-4">
               Step {index + 1} of {total}
             </span>
-            <h1 className="text-2xl sm:text-3xl font-semibold text-[#2f3b2f] mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#2f3b2f] mb-2 tracking-tight">
               {step.title}
             </h1>
             <p className="text-[#6f9c63] font-medium mb-6">{withGlossary(step.summary)}</p>
@@ -142,14 +142,14 @@ export default function StepScreen({
               {isComplete ? (
                 <button
                   onClick={onNext}
-                  className="px-6 py-3 rounded-xl font-semibold text-white bg-[#6f9c63] hover:bg-[#5e8a52] transition"
+                  className="px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-[#6f9c63] to-[#5e8a52] hover:brightness-105 shadow-lg shadow-[#6f9c63]/25 transition"
                 >
                   {index === total - 1 ? 'Finish' : 'Next step →'}
                 </button>
               ) : (
                 <button
                   onClick={onComplete}
-                  className="px-6 py-3 rounded-xl font-semibold text-white bg-[#6f9c63] hover:bg-[#5e8a52] transition"
+                  className="px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-[#6f9c63] to-[#5e8a52] hover:brightness-105 shadow-lg shadow-[#6f9c63]/25 transition"
                 >
                   Mark step complete
                 </button>

@@ -1,5 +1,6 @@
 import Shell from './Shell';
 import Card from './Card';
+import OnboardingProgress from './OnboardingProgress';
 
 const EXAMPLES: [string, string][] = [
   ['Regular Gmail', 'not HIPAA compliant'],
@@ -16,7 +17,8 @@ export default function HipaaScreen({ onContinue }: { onContinue: () => void }) 
     <Shell>
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-2xl w-full">
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#2f3b2f] mb-4">
+          <OnboardingProgress step={3} total={4} />
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#2f3b2f] mb-4 tracking-tight leading-tight">
             A quick word on "HIPAA compliant"
           </h1>
           <div className="space-y-4 text-[#4a5743] leading-relaxed">
@@ -64,7 +66,7 @@ export default function HipaaScreen({ onContinue }: { onContinue: () => void }) 
           </div>
           <button
             onClick={onContinue}
-            className="mt-8 w-full py-4 rounded-xl font-semibold text-white bg-[#6f9c63] hover:bg-[#5e8a52] transition"
+            className="mt-8 w-full py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-[#6f9c63] to-[#5e8a52] hover:brightness-105 shadow-lg shadow-[#6f9c63]/25 transition"
           >
             Got it, continue
           </button>

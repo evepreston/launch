@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Shell from './Shell';
 import Card from './Card';
+import OnboardingProgress from './OnboardingProgress';
 import { US_STATES } from '../data/states';
 import type { LicenseType, UserProfile } from '../types';
 
@@ -47,10 +48,11 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
     <Shell>
       <div className="flex-1 flex items-center justify-center px-6 py-16">
         <Card className="max-w-xl w-full">
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#2f3b2f] mb-2">
+          <OnboardingProgress step={2} total={4} />
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#2f3b2f] mb-2 tracking-tight leading-tight text-center">
             Let's make sure this is the right fit
           </h1>
-          <p className="text-[#5c6b52] mb-8">
+          <p className="text-[#5c6b52] mb-8 text-center">
             Before we get started, let's make sure this is the right fit for where you are in
             your journey. Three quick questions.
           </p>
@@ -137,7 +139,7 @@ export default function IntroScreen({ onComplete }: { onComplete: (profile: User
               canContinue &&
               onComplete({ state, isFullyLicensed: licensed, licenseType })
             }
-            className="mt-10 w-full py-4 rounded-xl font-semibold text-white bg-[#6f9c63] disabled:bg-[#cdd6c5] disabled:cursor-not-allowed hover:bg-[#5e8a52] transition"
+            className="mt-10 w-full py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-[#6f9c63] to-[#5e8a52] disabled:bg-[#cdd6c5] disabled:bg-none disabled:cursor-not-allowed hover:brightness-105 shadow-lg shadow-[#6f9c63]/25 disabled:shadow-none transition"
           >
             Continue
           </button>

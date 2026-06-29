@@ -17,12 +17,12 @@ export default function SectionIntroScreen({ section, sectionIndex, totalSection
           <span className="inline-block text-xs font-semibold text-[#6f9c63] bg-[#e6efe0] px-3 py-1 rounded-full mb-4">
             Section {sectionIndex + 1} of {totalSections}
           </span>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#2f3b2f] mb-3">{section.title}</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-[#2f3b2f] mb-3 tracking-tight leading-tight">{section.title}</h1>
           <p className="text-[#5c6b52] leading-relaxed mb-2">{section.description}</p>
           <p className="text-sm text-[#8a8a76] mb-8">Takes about {section.estimatedMinutes} minutes.</p>
           <button
             onClick={onContinue}
-            className="w-full py-4 rounded-xl font-semibold text-white bg-[#6f9c63] hover:bg-[#5e8a52] transition"
+            className="w-full py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-[#6f9c63] to-[#5e8a52] hover:brightness-105 shadow-lg shadow-[#6f9c63]/25 transition"
           >
             Start this section
           </button>
