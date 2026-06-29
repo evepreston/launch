@@ -1,5 +1,4 @@
 import Shell from './Shell';
-import Marquee from './Marquee';
 
 export default function CongratsScreen({ onContinue }: { onContinue: () => void }) {
   return (
@@ -50,25 +49,6 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
             </span>
             <span className="transition group-hover:translate-x-1">→</span>
           </button>
-        </div>
-      </div>
-
-      <Marquee />
-
-      <div className="bg-[#f0ead8] px-6 py-20">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="text-[#3a3a36] leading-relaxed mb-4">
-            built by therapists.
-          </p>
-          <a
-            href="#about"
-            className="group inline-flex items-center gap-2 font-medium lowercase text-[#7d9b76] hover:text-[#c4714f] transition"
-          >
-            <span className="border-b border-transparent group-hover:border-[#c4714f] transition">
-              learn more
-            </span>
-            <span className="transition group-hover:translate-x-1">→</span>
-          </a>
         </div>
       </div>
     </Shell>
