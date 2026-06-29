@@ -53,7 +53,7 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
             opening your private practice isn't as hard as it looks
             <br />
             <span className="text-[#7d9b76]">
-              we're here to guide you through the process, one step at a time.*
+              we're here to guide you through the process, one step at a time*
             </span>
           </p>
 
@@ -68,7 +68,7 @@ export default function CongratsScreen({ onContinue }: { onContinue: () => void 
           </button>
 
           <p className="text-[13px] lowercase text-[#8a8a80] ml-1 mt-20">
-            *built by a therapist and her business friend.
+            *built by a therapist and her business friend
           </p>
         </div>
       </main>
