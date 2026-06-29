@@ -17,7 +17,7 @@ body {
   margin: 0;
   background: #f5f2ea;
   color: #2c2c2a;
-  cursor: url('/cursor-hand.svg') 14 2, auto;
+  cursor: url('/cursor-hand.svg') 5 3, auto;
 }
 
 .screen-fade {
