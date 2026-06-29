@@ -1,47 +1,29 @@
 interface Props {
-  sectionIndex: number;
-  totalSections: number;
-  sectionTitle: string;
-  sectionStepsDone: number;
-  sectionStepsTotal: number;
-  overallCurrent: number;
-  overallTotal: number;
+  sectionStatuses: ('complete' | 'current' | 'upcoming')[];
+  sectionLabels: string[];
 }
 
-export default function ProgressBar({
-  sectionIndex,
-  totalSections,
-  sectionTitle,
-  sectionStepsDone,
-  sectionStepsTotal,
-  overallCurrent,
-  overallTotal,
-}: Props) {
-  const overallPct = overallTotal === 0 ? 0 : Math.round((overallCurrent / overallTotal) * 100);
-  const sectionPct =
-    sectionStepsTotal === 0 ? 0 : Math.round((sectionStepsDone / sectionStepsTotal) * 100);
-
+export default function ProgressBar({ sectionStatuses, sectionLabels }: Props) {
   return (
-    <div className="w-full sticky top-[73px] z-10 bg-[#f5f2ea]/80 backdrop-blur">
-      <div className="max-w-3xl mx-auto px-6 pt-6 pb-4">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-sm font-medium text-[#5a5a52] lowercase">
-            section {sectionIndex + 1} of {totalSections} — {sectionTitle}
-          </span>
-          <span className="text-sm font-medium text-[#5a5a52]">{overallPct}% complete</span>
-        </div>
-        <div className="flex gap-1.5">
-          {Array.from({ length: totalSections }).map((_, i) => {
-            const fillPct = i < sectionIndex ? 100 : i === sectionIndex ? sectionPct : 0;
-            return (
-              <div key={i} className="flex-1 h-3 rounded-full bg-[#e6ddc9] overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#7d9b76] to-[#a8c2a1] transition-all duration-500 ease-out"
-                  style={{ width: `${fillPct}%` }}
-                />
-              </div>
-            );
-          })}
+    <div className="w-full sticky top-[73px] z-10 bg-[#f5f2ea]/90 backdrop-blur border-b border-[#e6ddc9]">
+      <div className="max-w-5xl mx-auto px-6 py-4">
+        <div className="flex gap-2">
+          {sectionStatuses.map((status, i) => (
+            <div key={i} className="flex-1 flex flex-col gap-1.5">
+              <div
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  status === 'complete'
+                    ? 'bg-[#7d9b76]'
+                    : status === 'current'
+                    ? 'bg-[#7d9b76] animate-pulse'
+                    : 'bg-[#f5f2ea] border border-[#d3d1c7]'
+                }`}
+              />
+              <span className="text-[10px] lowercase text-[#8a8a80] leading-tight">
+                {sectionLabels[i]}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

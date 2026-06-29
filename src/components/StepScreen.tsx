@@ -1,5 +1,5 @@
+import { useState } from 'react';
 import Shell from './Shell';
-import Card from './Card';
 import ProgressBar from './ProgressBar';
 import RevenuePlanner from './RevenuePlanner';
 import BreakEvenCalculator from './BreakEvenCalculator';
@@ -7,6 +7,22 @@ import PromoCodeBadge from './PromoCodeBadge';
 import { SECTIONS } from '../data/sections';
 import { withGlossary } from '../utils/withGlossary';
 import type { WizardStep } from '../types';
+
+const SECTION_CELEBRATIONS = [
+  "you're set up. ✓",
+  "you're official. ✓",
+  'money sorted. ✓',
+  'practice defined. ✓',
+  "you're out there. ✓",
+];
+
+const SECTION_LABELS = [
+  "let's get started",
+  "let's make it official",
+  "let's sort out the money",
+  "let's define your practice",
+  "let's get you out there",
+];
 
 interface Props {
   step: WizardStep;
@@ -35,28 +51,56 @@ export default function StepScreen({
   completedIds,
   onJump,
 }: Props) {
+  const [celebrationPhase, setCelebrationPhase] = useState<'in' | 'out' | null>(null);
+
   const sectionIndex = SECTIONS.findIndex((s) => s.stepIds.includes(step.id));
   const section = SECTIONS[sectionIndex];
-  const sectionStepIds = new Set(section.stepIds);
-  const sectionStepsDone = steps.filter((s) => sectionStepIds.has(s.id) && completedIds.has(s.id)).length;
+  const isLastInSection = section.stepIds[section.stepIds.length - 1] === step.id;
+
+  const sectionStatuses = SECTIONS.map((sec, i) => {
+    const allDone = sec.stepIds.every((id) => completedIds.has(id));
+    if (allDone) return 'complete' as const;
+    if (i === sectionIndex) return 'current' as const;
+    return 'upcoming' as const;
+  });
+
+  const handleMarkComplete = () => {
+    if (isLastInSection && !isComplete) {
+      setCelebrationPhase('in');
+      setTimeout(() => setCelebrationPhase('out'), 1800);
+      setTimeout(() => {
+        setCelebrationPhase(null);
+        onComplete();
+        onNext();
+      }, 2300);
+    } else {
+      onComplete();
+    }
+  };
 
   return (
     <Shell>
-      <ProgressBar
-        sectionIndex={sectionIndex}
-        totalSections={SECTIONS.length}
-        sectionTitle={section.title}
-        sectionStepsDone={sectionStepsDone}
-        sectionStepsTotal={section.stepIds.length}
-        overallCurrent={completedIds.size}
-        overallTotal={total}
-      />
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 max-w-5xl mx-auto w-full px-6 py-8">
-        <aside className="hidden lg:block w-56 shrink-0">
+      {celebrationPhase && (
+        <div
+          className={`fixed inset-0 z-50 bg-[#f5f2ea] flex items-center justify-center ${
+            celebrationPhase === 'in' ? 'celebrate-in' : 'celebrate-out'
+          }`}
+        >
+          <span className="font-display font-bold text-[#7d9b76] text-[48px] sm:text-[64px] lowercase text-center px-6">
+            {SECTION_CELEBRATIONS[sectionIndex]}
+          </span>
+        </div>
+      )}
+
+      <ProgressBar sectionStatuses={sectionStatuses} sectionLabels={SECTION_LABELS} />
+
+      <div className="flex-1 flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto w-full px-6 py-10">
+        {/* Sidebar */}
+        <aside className="hidden lg:block w-52 shrink-0">
           {SECTIONS.map((sec) => (
-            <div key={sec.id} className="mb-5">
-              <p className="font-label text-xs font-normal text-[#6b6b62] lowercase mb-2">
-                {sec.title}
+            <div key={sec.id} className="mb-6">
+              <p className="text-[11px] font-normal text-[#8a8a80] lowercase mb-2 tracking-wide">
+                {sec.title.toLowerCase()}
               </p>
               <ol className="space-y-1">
                 {sec.stepIds.map((id) => {
@@ -69,20 +113,18 @@ export default function StepScreen({
                     <li key={s.id}>
                       <button
                         onClick={() => onJump(i)}
-                        className={`w-full text-left text-sm px-3 py-2 rounded-lg flex items-center gap-2 transition ${
+                        className={`w-full text-left text-sm py-1.5 flex items-start gap-2 transition lowercase ${
                           active
-                            ? 'bg-[#eaeee3] text-[#2c2c2a] font-medium'
-                            : 'text-[#5a5a52] hover:bg-[#f0f2e9]'
+                            ? 'text-[#7d9b76] font-medium'
+                            : done
+                            ? 'text-[#8a8a80]'
+                            : 'text-[#5a5a52] hover:text-[#2c2c2a]'
                         }`}
                       >
-                        <span
-                          className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] shrink-0 ${
-                            done ? 'bg-[#7d9b76] text-white' : 'bg-[#e6ddc9] text-[#6b6b62]'
-                          }`}
-                        >
-                          {done ? '✓' : i + 1}
+                        <span className="text-[#8a8a80] shrink-0 text-[11px] mt-0.5 w-4 text-right">
+                          {i + 1}.
                         </span>
-                        <span className="truncate">{s.title}</span>
+                        <span className="leading-snug">{s.title.toLowerCase()}</span>
                       </button>
                     </li>
                   );
@@ -92,70 +134,71 @@ export default function StepScreen({
           ))}
         </aside>
 
-        <div className="flex-1">
-          <Card>
-            <span className="inline-block text-xs font-semibold text-[#7d9b76] bg-[#eaeee3] px-3 py-1 rounded-full mb-4">
-              Step {index + 1} of {total}
-            </span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#2c2c2a] mb-2">
-              {step.title}
-            </h1>
-            <p className="text-[#7d9b76] font-medium mb-6">{withGlossary(step.summary)}</p>
+        {/* Main content */}
+        <div className="flex-1 min-w-0">
+          <p className="text-sm text-[#8a8a80] lowercase mb-4">
+            step {index + 1} of {total}
+          </p>
 
-            <div className="space-y-4 text-[#3a3a36] leading-relaxed">
-              {step.body.map((p, i) => (
-                <p key={i}>{withGlossary(p)}</p>
+          <h1 className="font-display font-bold lowercase text-[#2c2c2a] text-[28px] sm:text-[36px] leading-[1.1] mb-3">
+            {step.title.toLowerCase()}
+          </h1>
+
+          <p className="text-[#7d9b76] text-[17px] leading-relaxed mb-6">
+            {withGlossary(step.summary)}
+          </p>
+
+          <div className="space-y-4 text-[#3a3a36] leading-relaxed">
+            {step.body.map((p, i) => (
+              <p key={i}>{withGlossary(p)}</p>
+            ))}
+          </div>
+
+          {step.links.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+              {step.links.map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#7d9b76] hover:text-[#6b8a64] transition lowercase"
+                >
+                  {link.label} ↗
+                </a>
               ))}
             </div>
+          )}
 
-            {step.links.length > 0 && (
-              <div className="mt-6 flex flex-wrap gap-3">
-                {step.links.map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#f7ebe3] border border-[#e0c4ab] text-[#9c5234] font-medium hover:bg-[#f0dccb] transition"
-                  >
-                    {link.label}
-                    <span aria-hidden>↗</span>
-                  </a>
-                ))}
-              </div>
-            )}
+          {step.promo && <PromoCodeBadge promo={step.promo} />}
+          {step.tool === 'revenuePlanner' && <RevenuePlanner />}
+          {step.tool === 'breakEvenCalculator' && <BreakEvenCalculator />}
 
-            {step.promo && <PromoCodeBadge promo={step.promo} />}
+          <div className="mt-10 flex items-center justify-between gap-4">
+            <button
+              onClick={onBack}
+              disabled={!canGoBack}
+              className="text-[#8a8a80] lowercase disabled:opacity-0 hover:text-[#5a5a52] transition text-sm"
+            >
+              ← back
+            </button>
 
-            {step.tool === 'revenuePlanner' && <RevenuePlanner />}
-            {step.tool === 'breakEvenCalculator' && <BreakEvenCalculator />}
-
-            <div className="mt-10 flex items-center justify-between gap-4">
+            {isComplete ? (
               <button
-                onClick={onBack}
-                disabled={!canGoBack}
-                className="px-5 py-3 rounded-xl font-medium lowercase text-[#5a5a52] disabled:opacity-0 hover:text-[#c4714f] transition"
+                onClick={onNext}
+                className="font-medium lowercase text-[#7d9b76] hover:text-[#6b8a64] transition"
               >
-                ← back
+                {index === total - 1 ? 'finish →' : 'next step →'}
               </button>
-
-              {isComplete ? (
-                <button
-                  onClick={onNext}
-                  className="px-6 py-3 rounded-2xl font-medium lowercase text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 transition"
-                >
-                  {index === total - 1 ? 'finish' : 'next step →'}
-                </button>
-              ) : (
-                <button
-                  onClick={onComplete}
-                  className="px-6 py-3 rounded-2xl font-medium lowercase text-white bg-gradient-to-r from-[#7d9b76] to-[#6b8a64] hover:brightness-105 shadow-lg shadow-[#7d9b76]/25 transition"
-                >
-                  mark step complete
-                </button>
-              )}
-            </div>
-          </Card>
+            ) : (
+              <button
+                onClick={handleMarkComplete}
+                className="font-medium lowercase text-[#7d9b76] hover:text-[#6b8a64] transition"
+              >
+                mark step complete →
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </Shell>
