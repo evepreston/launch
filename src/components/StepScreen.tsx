@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Shell from './Shell';
 import ProgressBar from './ProgressBar';
 import RevenuePlanner from './RevenuePlanner';
@@ -51,9 +51,17 @@ export default function StepScreen({
   completedIds,
   onJump,
 }: Props) {
-  const [celebrationPhase, setCelebrationPhase] = useState<'in' | 'out' | null>(null);
-
   const sectionIndex = SECTIONS.findIndex((s) => s.stepIds.includes(step.id));
+  const [celebrationPhase, setCelebrationPhase] = useState<'in' | 'out' | null>(null);
+  const [openSections, setOpenSections] = useState<Set<string>>(() => new Set([SECTIONS[sectionIndex]?.id]));
+
+  useEffect(() => {
+    setOpenSections((prev) => {
+      const next = new Set(prev);
+      next.add(SECTIONS[sectionIndex]?.id);
+      return next;
+    });
+  }, [sectionIndex]);
   const section = SECTIONS[sectionIndex];
   const isLastInSection = section.stepIds[section.stepIds.length - 1] === step.id;
 
@@ -97,41 +105,61 @@ export default function StepScreen({
       <div className="flex-1 flex flex-col lg:flex-row gap-8 max-w-5xl mx-auto w-full px-6 py-10">
         {/* Sidebar */}
         <aside className="hidden lg:block w-52 shrink-0">
-          {SECTIONS.map((sec) => (
-            <div key={sec.id} className="mb-6">
-              <p className="text-[11px] font-normal text-[#8a8a80] lowercase mb-2 tracking-wide">
-                {sec.title.toLowerCase()}
-              </p>
-              <ol className="space-y-1">
-                {sec.stepIds.map((id) => {
-                  const i = steps.findIndex((s) => s.id === id);
-                  const s = steps[i];
-                  if (!s) return null;
-                  const done = completedIds.has(s.id);
-                  const active = i === index;
-                  return (
-                    <li key={s.id}>
-                      <button
-                        onClick={() => onJump(i)}
-                        className={`w-full text-left text-sm py-1.5 flex items-start gap-2 transition lowercase ${
-                          active
-                            ? 'text-[#7d9b76] font-medium'
-                            : done
-                            ? 'text-[#8a8a80]'
-                            : 'text-[#5a5a52] hover:text-[#2c2c2a]'
-                        }`}
-                      >
-                        <span className="text-[#8a8a80] shrink-0 text-[11px] mt-0.5 w-4 text-right">
-                          {i + 1}.
-                        </span>
-                        <span className="leading-snug">{s.title.toLowerCase()}</span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ol>
-            </div>
-          ))}
+          {SECTIONS.map((sec) => {
+            const isOpen = openSections.has(sec.id);
+            const toggleSection = () =>
+              setOpenSections((prev) => {
+                const next = new Set(prev);
+                if (next.has(sec.id)) next.delete(sec.id);
+                else next.add(sec.id);
+                return next;
+              });
+            return (
+              <div key={sec.id} className="mb-5">
+                <button
+                  onClick={toggleSection}
+                  className="w-full flex items-center justify-between gap-1 text-left mb-1.5 group"
+                >
+                  <p className="text-[11px] font-normal text-[#8a8a80] lowercase tracking-wide group-hover:text-[#5a5a52] transition">
+                    {sec.title.toLowerCase()}
+                  </p>
+                  <span className={`text-[#8a8a80] text-[10px] transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}>
+                    ›
+                  </span>
+                </button>
+                {isOpen && (
+                  <ol className="space-y-1">
+                    {sec.stepIds.map((id) => {
+                      const i = steps.findIndex((s) => s.id === id);
+                      const s = steps[i];
+                      if (!s) return null;
+                      const done = completedIds.has(s.id);
+                      const active = i === index;
+                      return (
+                        <li key={s.id}>
+                          <button
+                            onClick={() => onJump(i)}
+                            className={`w-full text-left text-sm py-1.5 flex items-start gap-2 transition lowercase ${
+                              active
+                                ? 'text-[#7d9b76] font-medium'
+                                : done
+                                ? 'text-[#8a8a80]'
+                                : 'text-[#5a5a52] hover:text-[#2c2c2a]'
+                            }`}
+                          >
+                            <span className="text-[#8a8a80] shrink-0 text-[11px] mt-0.5 w-4 text-right">
+                              {i + 1}.
+                            </span>
+                            <span className="leading-snug">{s.title.toLowerCase()}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                )}
+              </div>
+            );
+          })}
         </aside>
 
         {/* Main content */}
