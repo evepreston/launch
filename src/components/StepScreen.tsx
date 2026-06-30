@@ -140,7 +140,7 @@ export default function StepScreen({
             step {index + 1} of {total}
           </p>
 
-          <h1 className="font-display font-bold lowercase text-[#2c2c2a] text-[28px] sm:text-[36px] leading-[1.1] mb-3">
+          <h1 className="font-display font-bold lowercase text-[#2c2c2a] text-[20px] sm:text-[25px] leading-[1.1] mb-3">
             {step.title.toLowerCase()}
           </h1>
 
@@ -148,7 +148,7 @@ export default function StepScreen({
             {withGlossary(step.summary)}
           </p>
 
-          <div className="space-y-4 text-[#3a3a36] leading-relaxed">
+          <div className="space-y-4 text-[15px] text-[#3a3a36] leading-relaxed">
             {step.body.map((p, i) => (
               <p key={i}>{withGlossary(p)}</p>
             ))}
@@ -162,7 +162,7 @@ export default function StepScreen({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#7d9b76] hover:text-[#6b8a64] transition lowercase"
+                  className="text-[#7d9b76] hover:text-[#6b8a64] transition lowercase text-[15px]"
                 >
                   {link.label} ↗
                 </a>

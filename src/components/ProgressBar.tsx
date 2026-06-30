@@ -11,7 +11,7 @@ export default function ProgressBar({ sectionStatuses, sectionLabels }: Props) {
           {sectionStatuses.map((status, i) => (
             <div key={i} className="flex-1 flex flex-col gap-1.5">
               <div
-                className={`h-1.5 rounded-full transition-all duration-500 ${
+                className={`h-2 rounded-full transition-all duration-500 ${
                   status === 'complete'
                     ? 'bg-[#7d9b76]'
                     : status === 'current'
@@ -19,7 +19,7 @@ export default function ProgressBar({ sectionStatuses, sectionLabels }: Props) {
                     : 'bg-[#f5f2ea] border border-[#d3d1c7]'
                 }`}
               />
-              <span className="text-[10px] lowercase text-[#8a8a80] leading-tight">
+              <span className="text-[14px] lowercase text-[#8a8a80] leading-tight">
                 {sectionLabels[i]}
               </span>
             </div>
